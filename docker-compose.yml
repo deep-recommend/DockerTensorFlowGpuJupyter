@@ -1,4 +1,4 @@
-version: '3.7'
+version: "3.7"
 
 volumes:
   tfgpu_jupyter_ipynb:
@@ -10,12 +10,13 @@ services:
     ports:
       - "8888:8888"
     restart: always
+    runtime: nvidia
+    env_file: .env
     volumes:
       - tfgpu_jupyter_ipynb:/home/jupyter/notebooks
       - tfgpu_jupyter_data:/home/jupyter/data
-    deploy:
-      resources:
-        reservations:
-          devices:
-          - capabilities: [gpu]
-
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - capabilities: [gpu]
